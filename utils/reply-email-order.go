@@ -63,6 +63,7 @@ func ReplyEmailOrder(emailReceiver string, data model.Data , subject string) err
 		log.Fatalf("unable to parse template, %v", err)
 		return err
 	}
+
 	input := &ses.SendEmailInput{
 		Destination: &ses.Destination{
 			CcAddresses:  ccRecipients,
@@ -83,7 +84,6 @@ func ReplyEmailOrder(emailReceiver string, data model.Data , subject string) err
 		},
 		Source: aws.String(emailSender.Address),
 	}
-
 	// Send the email
 	_, err = svc.SendEmail(input)
 	if err != nil {

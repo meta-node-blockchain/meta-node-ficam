@@ -7,35 +7,43 @@ type EmailOrder struct {
 		ID               []byte
 		HexIdProduct     string
 		Quantity         uint
-		SUBCRIPTION_TYPE uint
+		Typ SubscriptionType
 		ProductName      string
 		ImgUrl           string
 	}
-	CreateAt uint
+	CreateAt     uint
 	CreateAtDate string
-	ShipInfo struct {
-		FirstName  string
-		LastName   string
-		Email      string
-		Country    string
-		City       string
-		State      string
-		PostalCode string
-		Phone      string
-		Address    string
+	ShipInfo     struct {
+		FirstName       string
+		LastName        string
+		Email           string
+		Country         string
+		City            string
+		StateOrProvince string
+		PostalCode      string
+		Phone           string
+		AddressDetail   string
 	}
 	ShippingFee uint
 }
 type Data struct {
-	Order EmailOrder
+	Order        EmailOrder
 	PaymentOrder uint
 }
-type Sender	struct {
-		Address string
-		Subject string
-} 
+type Sender struct {
+	Address string
+	Subject string
+}
 type Recipient struct {
 	ToEmails  []string
 	CcEmails  []string
 	BccEmails []string
 }
+type SubscriptionType uint
+
+const (
+	None SubscriptionType = iota
+    ThreeMonth 
+    SixMonth
+    TwelveMonth
+)
